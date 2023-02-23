@@ -48,7 +48,7 @@ while True:
     for cont in contornos:
         # Eliminamos los contornos pequeños
         area = cv2.contourArea(cont)
-        if area > 1600: # si el area es mayor a 100px
+        if area > 3000: # sAjustamos el area para que no reconozca objetos pequeños
             # cv2.drawContours(zona,[cont], -1, (255,255,0),2)
             x, y, ancho, alto = cv2.boundingRect(cont)
             cv2.rectangle(zona,(x, y), (x + ancho, y + alto),(255,255,0),3) # Dibujamos el rectangulo
@@ -62,8 +62,8 @@ while True:
         cv2.rectangle(zona, (x, y), (x + ancho, y + alto) , (255, 255, 0), 3) # Dibujamos el rectangulo
         
     print(info_id)
-    cv2.imshow('Zona de Interes',zona)
     cv2.imshow('Carretera', frame)
+    cv2.imshow('Zona de Interes',zona)
     cv2.imshow('Mascara', mascara)
 
     if not ret or cv2.waitKey(1) == 27:
